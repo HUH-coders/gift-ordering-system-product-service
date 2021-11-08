@@ -50,7 +50,7 @@ pipeline {
         }
         failure {
             echo 'Build stage failed'
-            error('Stopping early…')
+            error('Stopping early due to failure!!')
         }
     }
 }
