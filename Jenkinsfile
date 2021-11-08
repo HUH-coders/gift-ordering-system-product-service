@@ -6,19 +6,19 @@ pipeline {
     }
     agent any
     stages { 
-        stage('Cloning Git Repo') { 
+        stage('Clone') { 
             steps { 
                 git  branch:'main', url:'https://github.com/HUH-coders/gift-ordering-system-product-service.git'
             }
         }
-        stage('Building Image') { 
+        stage('Build') { 
             steps { 
                 script { 
                     dockerImage = docker.build(registry + ":$BUILD_NUMBER"," .")
                 }
             } 
         }
-        stage('Testing Stage') {
+        stage('Test') {
             steps {
                 script{
                     bat 'echo "Testing successful"'
@@ -26,7 +26,7 @@ pipeline {
             }
             
         }
-        stage('Deploying image') { 
+        stage('Deploy') { 
             steps { 
                 script { 
                     docker.withRegistry( '', registryCredential ) { 
@@ -35,7 +35,7 @@ pipeline {
                 }
             }
         }
-        stage('Cleaning up') { 
+        stage('Clean Up') { 
             steps { 
                 bat "docker rmi $registry:$BUILD_NUMBER" 
             }
