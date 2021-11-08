@@ -37,7 +37,7 @@ pipeline {
         }
         stage('Cleaning up') { 
             steps { 
-                bat "docker rmi $(docker images -q --filter 'before=dockerImage:$BUILD_NUMBER' dockerImage)"
+                bat "docker rmi $registry:$BUILD_NUMBER" 
             }
         }
     }
