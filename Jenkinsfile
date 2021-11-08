@@ -6,7 +6,7 @@ pipeline {
     }
     agent any
     stages { 
-        stage('Cloning our Git') { 
+        stage('Cloning Git Repo') { 
             steps { 
                 git  branch:'main', url:'https://github.com/HUH-coders/gift-ordering-system-product-service.git'
             }
